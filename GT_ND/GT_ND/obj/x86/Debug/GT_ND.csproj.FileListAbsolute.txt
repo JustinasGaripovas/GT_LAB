@@ -1,0 +1,6 @@
+/home/justin/Projects/GT_ND/GT_ND/bin/Debug/GT_ND.exe
+/home/justin/Projects/GT_ND/GT_ND/bin/Debug/GT_ND.pdb
+/home/justin/Projects/GT_ND/GT_ND/obj/x86/Debug/GT_ND.csprojAssemblyReference.cache
+/home/justin/Projects/GT_ND/GT_ND/obj/x86/Debug/GT_ND.csproj.CoreCompileInputs.cache
+/home/justin/Projects/GT_ND/GT_ND/obj/x86/Debug/GT_ND.exe
+/home/justin/Projects/GT_ND/GT_ND/obj/x86/Debug/GT_ND.pdb
