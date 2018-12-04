@@ -39,7 +39,7 @@ namespace GT_ND
         {
             ConsoleColor color = new ConsoleColor();
 
-            Node startNode = new Node();
+            public Node startNode = new Node();
 
             public String name;
 
@@ -129,8 +129,7 @@ namespace GT_ND
             }
         }
 
-
-        public static void Main(string[] args)
+        public static void InitBoard()
         {
             for (int i = 0; i <= 8; i++)
             {
@@ -140,19 +139,47 @@ namespace GT_ND
                     board[i, j] = currentNode;
                 }
             }
+        }
+
+        public static int getInput()
+        {
+            Console.WriteLine("Input how many knights should be on the board");
+            int x = Convert.ToInt32(Console.ReadLine());
+            if (x < 0 && x > 10)
+            {
+                Console.WriteLine("Error number should be less than 8");
+                return getInput();
+            }
+            else{
+                return x;
+            }
+
+
+        }
+
+
+        public static void Main(string[] args)
+        {
+            InitBoard();
 
             Node kingNode = board[8, 8];
             Node finishNode = board[0, 0];
 
             List<Knight> allKnights = new List<Knight>();
 
-            allKnights.Add(new Knight(board[0,8],ConsoleColor.Blue,"First knight"));
-            allKnights.Add(new Knight(board[1, 8], ConsoleColor.Yellow, "Second knight"));
-            allKnights.Add(new Knight(board[6, 4], ConsoleColor.Yellow, "Third knight"));
-            allKnights.Add(new Knight(board[1, 1], ConsoleColor.Yellow, "Forth knight"));
+            int countOfKnights = getInput();
 
+            Console.WriteLine(countOfKnights);
 
-            if (allKnights.Count == 0)
+            Random rnd = new Random();
+
+            for (int i = 1; i <= countOfKnights; i++)
+            {
+                allKnights.Add(new Knight(board[rnd.Next(0, i), rnd.Next(0, i)], ConsoleColor.Blue, i +" knight"));
+                Console.WriteLine();
+            }
+
+            if (countOfKnights == 0)
             {
                 Console.WriteLine("Nera zirgu ");
             }
@@ -160,6 +187,16 @@ namespace GT_ND
             {
                 calculations(allKnights, kingNode, finishNode);
             }
+
+            /*
+
+            allKnights.Add(new Knight(board[0,8],ConsoleColor.Blue,"First knight"));
+            allKnights.Add(new Knight(board[1, 8], ConsoleColor.Yellow, "Second knight"));
+            allKnights.Add(new Knight(board[6, 4], ConsoleColor.Yellow, "Third knight"));
+            allKnights.Add(new Knight(board[1, 1], ConsoleColor.Yellow, "Forth knight"));
+            */
+
+
         }
 
         public static void calculations(List<Knight> allKnights, Node kingNode, Node finishNode)
@@ -173,6 +210,9 @@ namespace GT_ND
             {
                 Console.WriteLine();
                 Console.WriteLine(k.name);
+                Console.WriteLine(k.startNode.x + "  " + k.startNode.y);
+
+
                 Console.WriteLine();
 
                 k.InitToKing(kingNode);
@@ -185,6 +225,9 @@ namespace GT_ND
 
                 Console.WriteLine(k.getPathToKing());
             }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
 
             Console.WriteLine("Final path");
 
@@ -192,6 +235,8 @@ namespace GT_ND
             {
                 Console.WriteLine();
                 Console.WriteLine(k.name);
+                Console.WriteLine("Starting node position  " + k.startNode.x + "  " + k.startNode.y);
+
                 Console.WriteLine();
 
                 if (k == tempKnight)
