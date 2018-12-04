@@ -159,8 +159,8 @@ namespace GT_ND
         {
             InitBoard();
 
-            Node kingNode = board[8, 8];
-            Node finishNode = board[0, 0];
+            Node kingNode = board[4, 8];
+            Node finishNode = board[0, 4];
 
             List<Knight> allKnights = new List<Knight>();
 
