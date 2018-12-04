@@ -153,10 +153,7 @@ namespace GT_ND
             else{
                 return x;
             }
-
-
         }
-
 
         public static void Main(string[] args)
         {
@@ -179,6 +176,13 @@ namespace GT_ND
                 Console.WriteLine();
             }
 
+            /*
+              allKnights.Add(new Knight(board[0,8],ConsoleColor.Blue,"First knight"));
+              allKnights.Add(new Knight(board[1, 8], ConsoleColor.Yellow, "Second knight"));
+              allKnights.Add(new Knight(board[6, 4], ConsoleColor.Yellow, "Third knight"));
+              allKnights.Add(new Knight(board[1, 1], ConsoleColor.Yellow, "Forth knight"));
+            */
+
             if (countOfKnights == 0)
             {
                 Console.WriteLine("Nera zirgu ");
@@ -187,21 +191,10 @@ namespace GT_ND
             {
                 calculations(allKnights, kingNode, finishNode);
             }
-
-            /*
-
-            allKnights.Add(new Knight(board[0,8],ConsoleColor.Blue,"First knight"));
-            allKnights.Add(new Knight(board[1, 8], ConsoleColor.Yellow, "Second knight"));
-            allKnights.Add(new Knight(board[6, 4], ConsoleColor.Yellow, "Third knight"));
-            allKnights.Add(new Knight(board[1, 1], ConsoleColor.Yellow, "Forth knight"));
-            */
-
-
         }
 
         public static void calculations(List<Knight> allKnights, Node kingNode, Node finishNode)
         {
-
             Knight tempKnight = new Knight();
 
             int minimalSteps = 99999;
@@ -211,8 +204,6 @@ namespace GT_ND
                 Console.WriteLine();
                 Console.WriteLine(k.name);
                 Console.WriteLine(k.startNode.x + "  " + k.startNode.y);
-
-
                 Console.WriteLine();
 
                 k.InitToKing(kingNode);
@@ -228,8 +219,12 @@ namespace GT_ND
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
 
-            Console.WriteLine("Final path");
+            Console.Write("Final path");
+            Console.ResetColor();
+
 
             foreach (Knight k in allKnights)
             {
@@ -343,9 +338,7 @@ namespace GT_ND
                         Console.BackgroundColor = ConsoleColor.DarkYellow;
                         Console.Write("{0,3:0}", board[i, j].step);
                     }
-                    
-
-
+            
                     Console.ResetColor();
                 }
 
@@ -355,58 +348,8 @@ namespace GT_ND
             }
 
             Console.WriteLine(n.stepCount);
-
-
         }
 
-
-        public static void printAll()
-        {
-
-            for (int i = 0; i <= 8; i++)
-            {
-                Console.Write("{0,3:0}", i);
-            }
-
-            Console.WriteLine();
-
-            for (int i = 0; i <= 8; i++)
-            {
-                Console.Write("{0,3:0}", "___");
-            }
-
-            Console.WriteLine();
-
-            for (int i = 0; i <= 8; i++)
-            {
-                for (int j = 0; j <= 8; j++)
-                {
-                    if(board[i, j].seen)
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                    }
-
-                    if(board[i, j].step == 100)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Black;
-                    }
-                    else
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkBlue;
-                    }
-
-                    Console.Write("{0,3:0}", board[i, j].step);
-
-                    Console.ResetColor();
-                }
-
-                Console.Write(" | {0}", i);
-
-                Console.WriteLine();
-            }
-            Console.WriteLine("--------------------------------");
-        }
-        
         public static Node BorderPatrol(int first, int second, int y, int x)
         {
             int tempY = y + first;
@@ -451,7 +394,6 @@ namespace GT_ND
                     break;
                 }
 
-
                 currentNode.open = false;
                 currentNode.seen = true;
 
@@ -489,7 +431,6 @@ namespace GT_ND
                     neighbor.step = temp_score;
                     neighbor.seen = true;
                     neighbor.score = neighbor.step + heuristic(neighbor, end);
-
                 }
             }
             
@@ -525,8 +466,6 @@ namespace GT_ND
             //board[y, x].open = false;
 
         }
-
-
     }
 }
 /*
